@@ -1,15 +1,15 @@
 <template>
   <div>
-    111
+    1111
   </div>
 </template>
 
 <script lang="ts">
-import { userLogin } from '@/api/user'
 import { defineComponent } from 'vue'
+import { userLogin } from '@/api/user'
 
 export default defineComponent({
-  setup() {
+  setup () {
     const handleLogin = () => {
       userLogin().then((res) => {
         console.log(res)

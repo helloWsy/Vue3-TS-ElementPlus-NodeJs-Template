@@ -5,16 +5,16 @@
   </div>
 </template>
 <script>
+import { defineComponent } from 'vue'
 
-export default {
-  data() {
+export default defineComponent({
+  data () {
     return {
       msg: '404 NOT FOUND'
     }
   }
-}
+})
 </script>
-
 <style lang="scss" scoped>
 
 </style>
