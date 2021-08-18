@@ -1,0 +1,24 @@
+{
+  "name": "nodedemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "mime-types": "^2.1.32",
+    "sass": "^1.38.0",
+    "sass-loader": "^12.1.0",
+    "vue-router": "^3.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node build/dev-server.js",
+    "build": "node build/build.js",
+    "server": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

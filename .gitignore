@@ -1,0 +1,21 @@
+.DS_Store
+node_modules/
+node-front/node_modules
+node-front/dist
+node-front/package-lock.json
+dist/
+static/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+tests/**/coverage/
+
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
