@@ -1,9 +1,14 @@
 import request from '@/utils/request'
 
 // Login
-export function userLogin() {
+interface UserForm {
+  username: string;
+  password: string;
+}
+export function userLogin(params:UserForm) {
   return request({
     url: '/api/login',
-    method: 'post'
+    method: 'post',
+    params
   })
 }

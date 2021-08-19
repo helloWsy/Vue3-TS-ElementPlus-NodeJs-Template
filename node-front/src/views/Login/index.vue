@@ -7,31 +7,38 @@
       <el-input v-model="form.password"></el-input>
     </el-form-item>
      <el-form-item>
-      <el-button type="primary">登录</el-button>
+      <el-button type="primary" @click="handleLogin">登录</el-button>
     </el-form-item>
   </el-form>
 </template>
 
 <script lang="ts">
 import { userLogin } from '../../api/user'
-import { defineComponent, ref } from 'vue'
+import { defineComponent, onMounted, ref, reactive } from 'vue'
 
-// interface UserForm {
-//     username: string;
-//     password: string;
-// }
+interface UserForm {
+    username: string;
+    password: string;
+}
 
 export default defineComponent({
+  data () {
+    return {
+
+    }
+  },
   setup () {
-    // const {ctx} =
+    const form = reactive({
+      username: '',
+      password: ''
+    })
     const handleLogin = () => {
-      userLogin().then((res) => {
+      userLogin(form).then((res) => {
         console.log(res)
       })
     }
-    handleLogin()
 
-    return { handleLogin }
+    return { form, handleLogin }
   }
 })
 
