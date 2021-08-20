@@ -5,10 +5,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
-
+  setup () {
+    // const router = useRouter()
+    // router.push({ path: '/login' })
+  }
 })
 
 </script>

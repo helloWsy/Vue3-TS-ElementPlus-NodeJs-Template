@@ -1,24 +1,39 @@
-const express = require('express')
 const db = require('../../lib/db')
-const app = express()
+const jwt = require('jsonwebtoken')
 
-app.post("/login", async (req, res) => {
-  const connection_read = db.con_read
-  const { username, password } = req.query
-  const sql = `SELECT * FROM "user" WHERE name = '${username}' and password = '${password}'`
-  const result = await connection_read(sql)
+module.exports = (path, router, app) => {
   
-  if(result.length) {
-    res.json({
-      code: 200,
-      data: 'success'
-    })
-  }else {
-    res.json({
-      code: 401,
-      data: 'error'
-    })
-  }
-})
+  // 用户登录
+  router.post(`${path}/login`, async (req, res) => {
+    // 查询用户
+    const { username, password } = req.query
+    let sql = `SELECT * FROM "user" WHERE name = '${username}' and password = '${password}'`
+    let result = await db(sql)
+    let code = 200
+    let message = 'success'
+    let token = null
+    
+    // 校验密码
+    if(!result.length) {
+      sql = `SELECT * FROM "user" WHERE name = '${username}'`
+      result = await db(sql)
+      code = 422
+      message = result.length ? '用户密码错误': '用户不存在'
+    } else {
+      token = jwt.sign({ id: result[0].id }, app.get('secret'))
+    }
 
-module.exports = app
+    // console.log(result);
+    // 返回token
+
+
+    res.status(code).json({
+      message,
+      token
+    })
+  })
+
+  // 修改用户
+
+  
+}

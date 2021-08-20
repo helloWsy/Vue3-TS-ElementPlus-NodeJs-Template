@@ -5,7 +5,20 @@
   </div>
   <router-view/>
 </template>
+<script lang="ts">
+import { defineComponent, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
+export default defineComponent({
+  setup () {
+    const router = useRouter()
+    onMounted(() => {
+      console.log(1)
+    })
+    return { }
+  }
+})
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -17,7 +30,6 @@
 
 #nav {
   padding: 30px;
-
   a {
     font-weight: bold;
     color: #2c3e50;

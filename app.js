@@ -2,12 +2,16 @@ const express = require('express')
 const session = require('express-session')
 const path = require('path')
 const app = express()
-const router = express.Router()
 const myRouter = require('./routes/index')
-
+const config = require('./config/default.json')
+// 接口
+const api = require('./routes/index')(app)
 
 app.use(express.static(path.join(__dirname, 'static')))
 app.use(express.urlencoded({ extended: true}));
+app.set('secret', config.secret_sign)
+// app.use(require('cors')())
+// app.use(express.json())
 
 app.use(session({
   name: 'express-demo',
@@ -20,12 +24,8 @@ app.use(session({
 }))
 
 
+app.listen(8082,()=>{
+  console.log('Server running at http://127.0.0.1:8082/')
+})
 
 
-// user接口
-app.use(myRouter.user)
-
-
-app.listen(8082)
-
-console.log('Server running at http://127.0.0.1:8082/')

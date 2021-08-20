@@ -5,9 +5,9 @@ interface UserForm {
   username: string;
   password: string;
 }
-export function userLogin(params:UserForm) {
+export function userLogin (params: UserForm) {
   return request({
-    url: '/api/login',
+    url: '/api/user/login',
     method: 'post',
     params
   })

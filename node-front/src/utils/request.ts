@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
+import { ElMessage } from 'element-plus'
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
@@ -19,14 +20,21 @@ service.interceptors.request.use(
 // 响应拦截
 service.interceptors.response.use(
   (response: AxiosResponse<any>) => {
-    const res = response.data
+    const { status, data } = response
+    // const res = response.data
     if (response.headers['content-type'] === 'application/octet-stream') {
       return response
     }
-    return res
+    return data
   },
   error => {
-    return Promise.reject(error)
+    // console.log(error.response)
+    ElMessage({
+      showClose: true,
+      message: error.response.data.message,
+      type: 'error'
+    })
+    return Promise.reject(error.response.data)
   }
 )
 

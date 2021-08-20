@@ -11,5 +11,6 @@
     "user": "root",
     "password": "",
     "database": "club"
-  }
+  },
+  "secret_sign": "dsafasfasgas321s" 
 }
